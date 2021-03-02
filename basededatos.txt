@@ -1,5 +1,7 @@
 create database invernadero;
 
+use invernadero;
+
 create table sensores(id int unsigned not null primary key auto_increment,
 nombre text not null);
 
