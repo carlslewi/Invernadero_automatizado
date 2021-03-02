@@ -1,0 +1,10 @@
+create database invernadero;
+
+create table sensores(id int unsigned not null primary key auto_increment,
+nombre text not null);
+
+create table valor_sensores(id unsigned not null primary key autoincrement,
+float valor not null,
+fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
+idsensor int unsigned not null,
+foreign key (idsensor) references sensores(id) on delete cascade on update cascade);
