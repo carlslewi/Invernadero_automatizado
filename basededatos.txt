@@ -5,7 +5,7 @@ use invernadero;
 create table sensores(id int unsigned not null primary key auto_increment,
 nombre text not null);
 
-create table valor_sensores(id int unsigned not null primary key autoincrement,
+create table valor_sensores(id int unsigned not null primary key auto_increment,
 valor float not null,
 fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP not null,
 idsensor int unsigned not null,
