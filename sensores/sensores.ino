@@ -16,15 +16,15 @@ void loop() {
     Serial.println("Error en lectura de datos de temperatura o humedad");
     return;
   }
-  Serial.println("Temperatura: ");
+  //Serial.println("Temperatura: ");
   Serial.print(t);
   Serial.println();
-  Serial.println("Humedad: ");
+  /*Serial.println("Humedad: ");
   Serial.print(h);
   Serial.println();
   Serial.println("Luminosidad: ");
   Serial.print(luz);
   Serial.println(" %");
-  Serial.println();
+  Serial.println();*/
   delay(5000);//Esperamos 5 segundos para volver a leer datos
 } 
