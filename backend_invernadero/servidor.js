@@ -17,6 +17,11 @@ serv.use(cors(opCors));
 serv.use(express.json());
 serv.use(express.urlencoded({ extended: true }));
 
+//Lamaremos a sync
+
+const db = require("./modelos");
+db.sequelize.sync();
+
 //Definiremos una ruta simple para cuando nos conectemos al servidor nos muestre um mensaje de bienvenida
 
 serv.get("/",(req, res) => {res.json({mensaje:"Bienvenido a servidor Backend de la aplicacion"})});
