@@ -3,7 +3,7 @@ module.exports = {
     USER : "admin",
     PASSWORD : "lewi",
     DB : "invernadero",
-    dialect: "MariaDB",
+    dialect: "mariadb",
     pool : {
         max : 10, //numero maximo de conexiones
         min : 0, //numero minimo de conexiones 

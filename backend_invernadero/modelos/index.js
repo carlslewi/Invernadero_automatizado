@@ -1,4 +1,4 @@
-const dbconf = require("../modelos/cofigdb.js");
+const dbconf = require("../configdb/configdb");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbconf.DB, dbconf.USER, dbconf.PASSWORD, {
     host : dbconf.HOST,
