@@ -3,7 +3,6 @@ const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbconf.DB, dbconf.USER, dbconf.PASSWORD, {
     host : dbconf.HOST,
     dialect : dbconf.dialect,
-    operatorsAliases: false,
 
     pool: {
         max : dbconf.pool.max,
@@ -13,9 +12,9 @@ const sequelize = new Sequelize(dbconf.DB, dbconf.USER, dbconf.PASSWORD, {
     }
 });
 
-const db = {}
+const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.temperatura = require("../modelos/temperatura.modelo.js");(sequelize,Sequelize);
+db.temperaturas = require("./temperatura.modelo")(sequelize,Sequelize);
 module.exports = db;

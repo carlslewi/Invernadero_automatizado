@@ -17,14 +17,21 @@ serv.use(cors(opCors));
 serv.use(express.json());
 serv.use(express.urlencoded({ extended: true }));
 
-//Lamaremos a sync
+//Lamaremos a sync, esto creara las tablas y modificaciones en la bd
 
 const db = require("./modelos");
-db.sequelize.sync();
+db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+  });
+//db.sequelize.sync();
 
 //Definiremos una ruta simple para cuando nos conectemos al servidor nos muestre um mensaje de bienvenida
 
 serv.get("/",(req, res) => {res.json({mensaje:"Bienvenido a servidor Backend de la aplicacion"})});
+
+//requerimos las rutas
+
+require("./rutas/temperatura.rutas")(serv);
 
 //Configuramos el puerto por el que van a ser escuchadas las peticiones
 

@@ -1,6 +1,6 @@
-const db = requiere("../modelos");
+const db = require("../modelos");
 
-const Temperatura = db.temperatura;
+const Temperatura = db.temperaturas;
 
 //Introducir temperatura en bd
 
@@ -11,10 +11,15 @@ exports.create = (req, res)=>{
     }
 
     const temperatura = {
-        valor : req.body.temperatura,
-        fecha : req.body.fecha
+        valor : req.body.valor
     };
 
     Temperatura.create(temperatura).then(datos => {res.send(datos);})
     .catch(err => {res.status(500).send({mensaje:err.mensaje || "Error guardando temperatura en base de datos"});});
+};
+
+//Devolver todos los valores de temperaturas registrados en la base de datos
+
+exports.findAll = (req,res) => {
+    Temperatura.findAll({}).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
 };
