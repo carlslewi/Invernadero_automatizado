@@ -17,7 +17,7 @@ serv.use(cors(opCors));
 serv.use(express.json());
 serv.use(express.urlencoded({ extended: true }));
 
-var th = require("./sensores/temperatura")(th);
+const th = require("./sensores/temperatura");
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
 
 const db = require("./modelos");
@@ -28,7 +28,9 @@ db.sequelize.sync({ force: true }).then(() => {
 
 //Definiremos una ruta simple para cuando nos conectemos al servidor nos muestre um mensaje de bienvenida
 
-serv.get("/",(req, res) => {res.json({mensaje:"Bienvenido a servidor Backend de la aplicacion"})});
+serv.get("/",(req, res) => {//res.json({mensaje:"Bienvenido a servidor Backend de la aplicacion"});
+  res.json(`${th.tmp}`);
+});
 
 //requerimos las rutas
 
