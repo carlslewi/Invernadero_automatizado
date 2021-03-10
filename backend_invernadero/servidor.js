@@ -17,6 +17,7 @@ serv.use(cors(opCors));
 serv.use(express.json());
 serv.use(express.urlencoded({ extended: true }));
 
+var th = require("./sensores/temperatura")(th);
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
 
 const db = require("./modelos");
@@ -32,6 +33,7 @@ serv.get("/",(req, res) => {res.json({mensaje:"Bienvenido a servidor Backend de 
 //requerimos las rutas
 
 require("./rutas/temperatura.rutas")(serv);
+
 
 //Configuramos el puerto por el que van a ser escuchadas las peticiones
 
