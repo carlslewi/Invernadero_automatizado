@@ -1,12 +1,6 @@
-const tmp=0;
-const th={};
-const sensort = require("node-dht-sensor");
-sensort.read(11,4, function(err, temp, hum){
-    if(!err){
-        th.tmp = temp;
-        th.hm = hum; 
-        console.log(`temperatura: ${temp}, humedad: ${hum}`);
-    }
-});
 
-module.exports = th;
+const sensort = require("node-dht-sensor");
+
+var sth = sensort.read(11,4) //(tipo de sensor, en este caso es el dht11 y pin gpio al que va conectado)
+
+exports.sth = sth.temperature.toFixed(1);

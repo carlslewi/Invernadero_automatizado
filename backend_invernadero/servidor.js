@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
+const mqtt =require('mqtt'); //Nuestro servidor va a actuar tambien como cliente subscriptor
 const serv = express();
 
 //Aqui definiremos las opciones de cors
@@ -17,9 +17,7 @@ serv.use(cors(opCors));
 serv.use(express.json());
 serv.use(express.urlencoded({ extended: true }));
 
-const th = require("./sensores/temperatura");
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
-
 const db = require("./modelos");
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
@@ -28,8 +26,7 @@ db.sequelize.sync({ force: true }).then(() => {
 
 //Definiremos una ruta simple para cuando nos conectemos al servidor nos muestre um mensaje de bienvenida
 
-serv.get("/",(req, res) => {//res.json({mensaje:"Bienvenido a servidor Backend de la aplicacion"});
-  res.json(`${th.tmp}`);
+serv.get("/",(req, res) => {res.json({mensaje:"Bienvenido a servidor Backend de la aplicacion"});
 });
 
 //requerimos las rutas
@@ -42,3 +39,17 @@ require("./rutas/temperatura.rutas")(serv);
 const PORT = process.env.PORT || 8080;
 
 serv.listen(PORT,() => {console.log(`Servidor escuchando en puerto ${PORT}.`);});
+
+/*Configuraremos la parte subscritora del mqtt para guardar los valores en la base de datos
+en el tiempo que especifiquemos*/
+const sub = mqtt.connect('mqtt://localhost')
+
+sub.on('connect',()=>{
+    sub.subscribe('temperatura')
+    console.log("Suscrito")
+})
+
+sub.on('message', (topic, message) => {
+  console.log(message.toString())
+  //sub.end()
+})
