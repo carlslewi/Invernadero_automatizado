@@ -1,0 +1,17 @@
+module.exports = serv => {
+    //Introducir temperatura
+    const temperaturas = require("../controladores/temperatura.controlador");
+    const humedades = require("../controladores/humedad.controlador")
+    var ruta = require("express").Router();
+
+    //Intro temperatura
+    ruta.post("/temperaturas/",temperaturas.create);
+    ruta.get("/temperaturas", temperaturas.findAll);
+
+    //Intro humedad
+
+    ruta.post("/humedades/", humedades.create);
+    ruta.get("/humedades/", humedades.findAll);
+    
+    serv.use('/api/', ruta);
+};

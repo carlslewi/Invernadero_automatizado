@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const mqtt =require('mqtt'); //Nuestro servidor va a actuar tambien como cliente subscriptor
 const serv = express();
 
 //Aqui definiremos las opciones de cors
@@ -31,7 +30,7 @@ serv.get("/",(req, res) => {res.json({mensaje:"Bienvenido a servidor Backend de 
 
 //requerimos las rutas
 
-require("./rutas/temperatura.rutas")(serv);
+require("./rutas/rutas")(serv);
 
 
 //Configuramos el puerto por el que van a ser escuchadas las peticiones
@@ -40,16 +39,5 @@ const PORT = process.env.PORT || 8080;
 
 serv.listen(PORT,() => {console.log(`Servidor escuchando en puerto ${PORT}.`);});
 
-/*Configuraremos la parte subscritora del mqtt para guardar los valores en la base de datos
-en el tiempo que especifiquemos*/
-const sub = mqtt.connect('mqtt://localhost')
-
-sub.on('connect',()=>{
-    sub.subscribe('temperatura')
-    console.log("Suscrito")
-})
-
-sub.on('message', (topic, message) => {
-  console.log(message.toString())
-  //sub.end()
-})
+//Requerimos a cliente.js para suscribirnos a los sensores
+require("./cliente/cliente");

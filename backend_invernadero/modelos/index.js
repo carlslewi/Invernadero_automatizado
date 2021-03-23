@@ -17,4 +17,5 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.temperaturas = require("./temperatura.modelo")(sequelize,Sequelize);
+db.humedad = require("./humedad.modelo")(sequelize, Sequelize);
 module.exports = db;

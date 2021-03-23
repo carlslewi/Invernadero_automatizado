@@ -1,7 +1,7 @@
 const mqtt = require('mqtt')
 const pub = mqtt.connect('mqtt://localhost')
-const th = require('./sensores/temperatura')
-const http = require('./http-common')
+const th = require('../sensores/temperatura')
+const http = require('../http-common')
 
 var tiempo = 5000; // variable que usaremos para indicar cada cuantos milisegundos publicamos y guardamos 
 
@@ -14,8 +14,8 @@ pub.on('connect', () => {
   if(pub.connected){
     console.log("Publicador conectado");
     //Publicamos y guardamos cada cierto tiempo
-    setInterval(()=>{pub.publish('temperatura', th.sth);
-                     http.instance.post("/temperaturas/",{valor:th.sth});       
+    setInterval(()=>{pub.publish('temperatura', th.sth.temperature.toFixed(1));
+                     http.instance.post("/temperaturas/",{valor:th.sth.temperature.toFixed(1)});       
                               },tiempo);
   }else{console.log('Ha ocurrido algo raro')}
 })
