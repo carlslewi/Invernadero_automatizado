@@ -12,6 +12,11 @@ module.exports = serv => {
 
     ruta.post("/humedades/", humedades.create);
     ruta.get("/humedades/", humedades.findAll);
+
+    //Intro luminosidad
+
+    ruta.post("/luminosidades/",luminosidades.create);
+    ruta.get("/luminosidades/", luminosidades.findAll);
     
     serv.use('/api/', ruta);
 };

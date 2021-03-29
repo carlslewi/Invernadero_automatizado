@@ -14,10 +14,12 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "gpio": "^0.2.10",
     "mariadb": "^2.5.3",
     "mqtt": "^4.2.6",
     "mysql2": "^2.2.5",
     "node-dht-sensor": "^0.4.3",
+    "pi-gpio": "^0.0.8",
     "sequelize": "^6.5.0",
     "serialport": "^9.0.7"
   }

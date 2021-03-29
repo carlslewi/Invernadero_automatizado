@@ -2,7 +2,7 @@ const mqtt =require('mqtt'); //Nuestro servidor va a actuar tambien como cliente
 const sub = mqtt.connect('mqtt://localhost')
 
 sub.on('connect',()=>{
-    sub.subscribe('temperatura')
+    sub.subscribe({'temperatura': {qos: 0}, 'humedad': {qos: 0}, 'luminosidad' : {qos:0}})
     console.log("Suscrito")
 })
 

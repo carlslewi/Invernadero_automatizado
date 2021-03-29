@@ -16,11 +16,23 @@ serv.use(cors(opCors));
 serv.use(express.json());
 serv.use(express.urlencoded({ extended: true }));
 
+/*Crearemos los roles mientras estemos desarrollando la aplicacion mediante la funcion
+inicializar(), una vez acabada la borraremos y los crearemos manualmente*/
+
+const Rol = db.rol;
+
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
 const db = require("./modelos");
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
+    inicializar();
   });
+
+function inicializar(){
+  Rol.create({id:1, rol:"usuario"});
+  Rol.create({id:2, rol:"administrador"})
+};
+
 //db.sequelize.sync();
 
 //Definiremos una ruta simple para cuando nos conectemos al servidor nos muestre um mensaje de bienvenida

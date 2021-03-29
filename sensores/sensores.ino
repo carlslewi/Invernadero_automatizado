@@ -17,8 +17,8 @@ void loop() {
     return;
   }
   //Serial.println("Temperatura: ");
+  delay(2000);
   Serial.print(t);
-  Serial.println();
   /*Serial.println("Humedad: ");
   Serial.print(h);
   Serial.println();
@@ -27,4 +27,5 @@ void loop() {
   Serial.println(" %");
   Serial.println();*/
   delay(5000);//Esperamos 5 segundos para volver a leer datos
+  Serial.flush();
 } 
