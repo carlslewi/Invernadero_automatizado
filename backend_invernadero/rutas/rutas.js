@@ -15,8 +15,8 @@ module.exports = serv => {
 
     //Intro luminosidad
 
-    ruta.post("/luminosidades/",luminosidades.create);
-    ruta.get("/luminosidades/", luminosidades.findAll);
+    //ruta.post("/luminosidades/",luminosidades.create);
+    //ruta.get("/luminosidades/", luminosidades.findAll);
     
     serv.use('/api/', ruta);
 };

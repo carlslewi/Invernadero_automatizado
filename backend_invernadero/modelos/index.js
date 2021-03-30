@@ -29,7 +29,7 @@ db.rol = require("./rol.modelo")(sequelize, Sequelize);
 db.usuario.belongsToMany(db.rol,{
     through:"usuario_rol",
     foreignKey:"id_usuario",
-    otherKey:"rol_id"
+    otherKey:"id_rol"
 });
 
 db.rol.belongsToMany(db.usuario,{

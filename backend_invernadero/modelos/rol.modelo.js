@@ -1,7 +1,7 @@
 module.exports = (sequelize, Sequelize)=>{
     const Rol = sequelize.define("roles",{
         id : {
-            type : Sequelize.Integer,
+            type: Sequelize.INTEGER,
             primaryKey: true
         },
         rol : {

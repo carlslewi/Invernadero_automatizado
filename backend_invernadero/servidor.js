@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const serv = express();
+const db = require("./modelos");
 
 //Aqui definiremos las opciones de cors
 
@@ -22,7 +23,7 @@ inicializar(), una vez acabada la borraremos y los crearemos manualmente*/
 const Rol = db.rol;
 
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
-const db = require("./modelos");
+
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
     inicializar();
@@ -43,6 +44,8 @@ serv.get("/",(req, res) => {res.json({mensaje:"Bienvenido a servidor Backend de 
 //requerimos las rutas
 
 require("./rutas/rutas")(serv);
+require("./rutas/autenticacion.rutas")(serv);
+require("./rutas/usuario.rutas")(serv);
 
 
 //Configuramos el puerto por el que van a ser escuchadas las peticiones
