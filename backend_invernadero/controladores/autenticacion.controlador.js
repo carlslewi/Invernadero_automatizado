@@ -47,6 +47,8 @@ exports.login = (req, res)=>{
             });
         }
 
+        var token = jwt.sign({id:usuario.id}, config.secret, {expiresIn:86400});
+ 
         var autoridades = [];
         usuario.getRoles().then(roles=>{
             for(let i=0; i<roles.length;i++){

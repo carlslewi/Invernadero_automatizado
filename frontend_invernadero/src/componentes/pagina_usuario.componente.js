@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import UsuarioServicio from "../servicios/usuario.servicio"
 
-export default class Inicio extends Component{
+export default class PagUsuario extends Component{
     constructor(props){
         super(props);
 
@@ -10,7 +10,7 @@ export default class Inicio extends Component{
         };
     }
     componentDidMount(){
-        UsuarioServicio.getContenidoPublico().then(
+        UsuarioServicio.getContenidoUsuario().then(
             response => {
                 this.setState({
                     content:response.data
