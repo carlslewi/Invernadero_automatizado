@@ -8,9 +8,11 @@ export default class PagUsuario extends Component{
     constructor(props){
         super(props);
         this.obtenerTemperaturas = this.obtenerTemperaturas.bind(this);
+        this.obtenerUltTemp = this.obtenerUltTemp.bind(this);
         this.state={
             //content:"",
-            temperaturas:[]
+            temperaturas:[],
+            temperaturamax:[],
         };
     }
     componentDidMount(){
@@ -27,11 +29,12 @@ export default class PagUsuario extends Component{
             }
         );
 
-        this.obtenerTemperaturas();
+        //this.obtenerTemperaturas();
+       this.obtenerUltTemp();
     }
 
     obtenerTemperaturas() {
-        Sensores.getDatos().then(
+        Sensores.getAllTemps().then(
             response => {
                 this.setState({
                     temperaturas:response.data
@@ -44,24 +47,40 @@ export default class PagUsuario extends Component{
             }
         );
     }
+
+    obtenerUltTemp() {
+        Sensores.getUltTemp().then(
+            response => {
+                this.setState({
+                    temperaturamax:response.data
+                });
+            }, error => {
+                this.setState({
+                    content: (error.response && error.response.data) ||
+                    error.message || error.message.toString()
+                });
+            }
+        );
+    }
+
     render(){
-        const {temperaturas} = this.state ;
+        const {temperaturamax, temperaturas} = this.state;
         return(
             <div className="container">
                 <header className="jumbotron">
                    Página Usuario
                 </header>
-                <div className="col-md-6">
-                <h4>Temperaturas</h4>
+               <div className="col-md-6">
+                <h6>Última temperatura registrada</h6>
                 <ul className="list-group">
-                    {temperaturas &&
-                        temperaturas.map((temperatura) => (
+                    {temperaturamax &&
+                        temperaturamax.map((temperatura) => (
                     <li>
                     {temperatura.valor}
                     </li>
                 ))}
                 </ul>
-                </div>
+                        </div>
             </div>
         );
     }

@@ -24,6 +24,17 @@ exports.findAll = (req,res) => {
     Temperatura.findAll({}).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
 };
 
+//Devolver ultima temperatura insertada
+
+exports.findLastTemp = (req,res) => {
+  Temperatura.findAll({
+    attributes: [
+      [db.sequelize.fn('MAX', db.sequelize.col('id')), 'idmax'],
+      'valor'
+    ]
+  }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});;
+};
+
 exports.deleteAll = (req, res) => {
     Temperatura.destroy({
       where: {},

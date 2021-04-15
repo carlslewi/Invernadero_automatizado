@@ -1,7 +1,10 @@
 import http from "../conf.http.js"
 class Sensores{
-    getDatos(){
+    getAllTemps(){
         return http.get("/temperaturas");
+    }
+    getUltTemp(){
+        return http.get("/temperaturamax");
     }
 }
 
