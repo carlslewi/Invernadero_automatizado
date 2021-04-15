@@ -7,6 +7,7 @@ module.exports = serv => {
     //Intro temperatura
     ruta.post("/temperaturas/",temperaturas.create);
     ruta.get("/temperaturas", temperaturas.findAll);
+    ruta.delete("/temperaturas", temperaturas.deleteAll);
 
     //Intro humedad
 

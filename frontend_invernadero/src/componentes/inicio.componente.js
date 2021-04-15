@@ -27,7 +27,7 @@ export default class Inicio extends Component{
         return(
             <div className="container">
                 <header className="jumbotron">
-                   <h3>{this.state.content}</h3> 
+                   Bienvenido a la App, para consultar datos debes estar registrado.
                 </header>
             </div>
         );

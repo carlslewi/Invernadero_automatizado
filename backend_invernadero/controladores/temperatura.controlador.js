@@ -23,3 +23,19 @@ exports.create = (req, res)=>{
 exports.findAll = (req,res) => {
     Temperatura.findAll({}).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
 };
+
+exports.deleteAll = (req, res) => {
+    Temperatura.destroy({
+      where: {},
+      truncate: false
+    })
+      .then(nums => {
+        res.send({ message: `${nums} Temperaturas borradas` });
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Ha ocurrido algún error"
+        });
+      });
+  };

@@ -1,12 +1,16 @@
 import React, {Component} from "react";
 import UsuarioServicio from "../servicios/usuario.servicio"
+import Sensores from "../servicios/datossensores.servicio"
+
 
 export default class PagUsuario extends Component{
+    
     constructor(props){
         super(props);
-
+        this.obtenerTemperaturas = this.obtenerTemperaturas.bind(this);
         this.state={
-            content:""
+            //content:"",
+            temperaturas:[]
         };
     }
     componentDidMount(){
@@ -22,13 +26,42 @@ export default class PagUsuario extends Component{
                 });
             }
         );
+
+        this.obtenerTemperaturas();
+    }
+
+    obtenerTemperaturas() {
+        Sensores.getDatos().then(
+            response => {
+                this.setState({
+                    temperaturas:response.data
+                });
+            }, error => {
+                this.setState({
+                    content: (error.response && error.response.data) ||
+                    error.message || error.message.toString()
+                });
+            }
+        );
     }
     render(){
+        const {temperaturas} = this.state ;
         return(
             <div className="container">
                 <header className="jumbotron">
-                   <h3>{this.state.content}</h3> 
+                   Página Usuario
                 </header>
+                <div className="col-md-6">
+                <h4>Temperaturas</h4>
+                <ul className="list-group">
+                    {temperaturas &&
+                        temperaturas.map((temperatura) => (
+                    <li>
+                    {temperatura.valor}
+                    </li>
+                ))}
+                </ul>
+                </div>
             </div>
         );
     }

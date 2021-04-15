@@ -15,7 +15,6 @@ class App extends Component{
     super(props);
     this.logOut = this.logOut.bind(this);
     this.state ={
-      mostrarPagUsuario:false,
       mostrarPagAdmin:false,
       usuarioActual:undefined
     };
@@ -26,7 +25,6 @@ class App extends Component{
     if(usuario){
       this.setState({
         usuarioActual : usuario,
-        mostrarPagUsuario : usuario.roles.includes("ROL_USUARIO"),
         mostrarPagAdmin : usuario.roles.includes("ROL_ADMINISTRADOR"),
       });
     }
@@ -37,7 +35,7 @@ class App extends Component{
   }
 
   render(){
-    const {usuarioActual, mostrarPagUsuario, mostrarPagAdmin} = this.state;
+    const {usuarioActual, mostrarPagAdmin} = this.state;
     return(
       <div>
         <nav className = "navbar navbar-expand navbar-dark bg-dark">
@@ -51,18 +49,10 @@ class App extends Component{
             </Link>
             </li>
             
-            {mostrarPagUsuario && (
-              <li className="nav-item">
-                <Link to ={"/usuarioR"} className="nav-link">
-                  Página Usuario
-                </Link>
-              </li>
-            )}
-
             {mostrarPagAdmin && (
               <li className="nav-item">
                 <Link to ={"/administrador"} className="nav-link">
-                  Página Usuario
+                  Página Administrador
                 </Link>
               </li>
             )}  
@@ -110,7 +100,7 @@ class App extends Component{
               <Route exact path={["/login"]} component={Login}/>
               <Route exact path={["/registro"]} component={Registro}/>
               <Route exact path={["/perfil"]} component={Perfil}/>
-              <Route exact path={["/usuarioR"]} component={PagUsuario}/>
+              <Route exact path={["/usuario"]} component={PagUsuario}/>
               <Route exact path={["/administrador"]} component={PagAdmin}/>
             </Switch>
         </div>
