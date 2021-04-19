@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const serv = express();
 const db = require("./modelos");
+const U_controlador = require("./controladores/usuario.controlador");
 
 //Aqui definiremos las opciones de cors
 
@@ -21,18 +22,19 @@ serv.use(express.urlencoded({ extended: true }));
 inicializar(), una vez acabada la borraremos y los crearemos manualmente*/
 
 const Rol = db.rol;
+const Usuario = db.usuario;
+//Preparamos la base de datos
+const run = async()=>{Rol.create({id:1, rol:"usuario"});
+const r= await Rol.create({id:2, rol:"administrador"})
+const u= await Usuario.create({id:1,nom_usuario:"admin",password:"admin",email:"admin@uca.es"});
+await u.addRoles([r])}
 
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
 
 db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
-    inicializar();
+    run();
   });
-
-function inicializar(){
-  Rol.create({id:1, rol:"usuario"});
-  Rol.create({id:2, rol:"administrador"})
-};
 
 //db.sequelize.sync();
 

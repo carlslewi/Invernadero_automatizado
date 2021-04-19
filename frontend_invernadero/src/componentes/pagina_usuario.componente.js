@@ -70,14 +70,21 @@ export default class PagUsuario extends Component{
                 <header className="jumbotron">
                    Página Usuario
                 </header>
-               <div className="col-md-6">
+               <div className="col-md-4">
                 <h6>Última temperatura registrada</h6>
                 <ul className="list-group">
                     {temperaturamax &&
                         temperaturamax.map((temperatura) => (
-                    <li>
-                    {temperatura.valor}
-                    </li>
+                    <input value={temperatura.valor}/>
+                ))}
+                </ul>
+                        </div>
+                        <div className="col-md-4">
+                <h6>Última temperatura registrada</h6>
+                <ul className="list-group">
+                    {temperaturamax &&
+                        temperaturamax.map((temperatura) => (
+                    <input value={temperatura.valor}/>
                 ))}
                 </ul>
                         </div>
