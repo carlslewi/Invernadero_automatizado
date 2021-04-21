@@ -24,10 +24,28 @@ inicializar(), una vez acabada la borraremos y los crearemos manualmente*/
 const Rol = db.rol;
 const Usuario = db.usuario;
 //Preparamos la base de datos
-const run = async()=>{Rol.create({id:1, rol:"usuario"});
-const r= await Rol.create({id:2, rol:"administrador"})
-const u= await Usuario.create({id:1,nom_usuario:"admin",password:"admin",email:"admin@uca.es"});
-await u.addRoles([r])}
+const run = async()=>{
+const r0= await Rol.create({id:1, rol:"usuario"});
+const r1= await Rol.create({id:2, rol:"administrador"})
+const u1= await Usuario.create({id:1,nom_usuario:"admin",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"admin@uca.es", activo:true});
+const u2= await Usuario.create({id:2,nom_usuario:"baldu",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"admn@uca.es", activo:false});
+const u3= await Usuario.create({id:3,nom_usuario:"dimak",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"adm@uca.es", activo:false});
+const u4= await Usuario.create({id:4,nom_usuario:"tamper",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"ad@uca.es", activo:false});
+const u5= await Usuario.create({id:5,nom_usuario:"kjñl",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"a@uca.es", activo:false});
+const u6= await Usuario.create({id:6,nom_usuario:"tmper",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"as@uca.es", activo:false});
+const u7= await Usuario.create({id:7,nom_usuario:"tsfsfper",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"addds@uca.es", activo:false});
+const u8= await Usuario.create({id:8,nom_usuario:"tsfsssfsfper",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"adfgddds@uca.es", activo:false});
+const u9= await Usuario.create({id:9,nom_usuario:"tsfsssfdgdgfsfper",password:"$2a$08$uA1rNlXHAGkrZfqefNl7.ubtYwBp5XWj4eKRNsoArzgs2cJcjU/Tq",email:"adfgdfhdddds@uca.es", activo:false});
+await u1.addRoles([r1])
+await u2.addRoles([r0])
+await u3.addRoles([r0])
+await u4.addRoles([r0])
+await u5.addRoles([r0])
+await u6.addRoles([r0])
+await u7.addRoles([r0])
+await u8.addRoles([r0])
+await u9.addRoles([r0])
+}
 
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
 

@@ -11,7 +11,8 @@ exports.registro = (req, res) => {
     Usuario.create({
         nom_usuario : req.body.nom_usuario,
         password : bcrypt.hashSync(req.body.password,8),
-        email : req.body.email 
+        email : req.body.email, 
+        activo: false
     }).then(usuario => {
         if(req.body.roles){
             Rol.findAll({
@@ -45,6 +46,9 @@ exports.login = (req, res)=>{
                 accessToken:null,
                 message:"Password incorrecto"
             });
+        }
+        if(usuario.activo == false){
+            return res.status(404).send({message:"Usuario no activado, debe esperar a que el administrador lo active para usar la aplicación"});
         }
 
         var token = jwt.sign({id:usuario.id}, config.secret, {expiresIn:86400});

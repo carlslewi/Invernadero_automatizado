@@ -8,6 +8,9 @@ module.exports = (sequelize, Sequelize)=>{
         },
         email:{
             type : Sequelize.STRING
+        },
+        activo : {
+            type : Sequelize.BOOLEAN
         }
     });
     return Usuario;

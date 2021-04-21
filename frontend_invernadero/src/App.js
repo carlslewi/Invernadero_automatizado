@@ -8,6 +8,7 @@ import Registro from "./componentes/registro.componente";
 import Perfil from "./componentes/perfil.componente";
 import PagUsuario from "./componentes/pagina_usuario.componente";
 import PagAdmin from "./componentes/pagina_administrador.componente";
+import UsuariosLista from "./componentes/usuarios-lista.componente"
 
 
 class App extends Component{
@@ -52,7 +53,7 @@ class App extends Component{
             {mostrarPagAdmin && (
               <li className="nav-item">
                 <Link to ={"/administrador"} className="nav-link">
-                  Página Administrador
+                  Administrador
                 </Link>
               </li>
             )}  
@@ -102,6 +103,8 @@ class App extends Component{
               <Route exact path={["/perfil"]} component={Perfil}/>
               <Route exact path={["/usuario"]} component={PagUsuario}/>
               <Route exact path={["/administrador"]} component={PagAdmin}/>
+              <Route exact path={["/administrador/usuarios"]} component={UsuariosLista} />
+
             </Switch>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from "react-router-dom";
 import UsuarioServicio from "../servicios/usuario.servicio"
 
 export default class PagAdmin extends Component{
@@ -26,9 +27,22 @@ export default class PagAdmin extends Component{
     render(){
         return(
             <div className="container">
-                <header className="jumbotron">
-                   <h3>{this.state.content}</h3> 
-                </header>
+                    <nav>
+                        <div className="navbar-nav mr-auto">
+                            <li className="nav-item"> 
+                                <Link to={"/administrador/usuarios"} className="nav-link">
+                                    Usuarios
+                                </Link>
+                            </li>
+                            <li className="nav-item"> 
+                                <Link to={"administrador/temperaturas"} className="nav-link">
+                                    Temperaturas
+                                </Link>
+                            </li>
+                        </div>
+                    </nav>
+                    
+                    
             </div>
         );
     }
