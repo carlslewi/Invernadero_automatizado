@@ -16,7 +16,9 @@ export default class UsuariosLista extends Component {
       usuarios: [],
       usuarioActual: null,
       indiceActual: -1,
-      buscarNombre: ""
+      buscarNombre: "",
+      activarBoton:true,
+      cambiarCabecera:null
     };
   }
 
@@ -49,7 +51,7 @@ export default class UsuariosLista extends Component {
     this.devolverUsuarios();
     this.setState({
       usuarioActual: null,
-      indiceActual: -1
+      indiceActual: -1,
     });
   }
 
@@ -58,10 +60,30 @@ export default class UsuariosLista extends Component {
       usuarioActual: usuario,
       indiceActual: indice
     });
+    if(usuario.id===1){
+      this.setState({
+        activarBoton:true
+      });
+    }else{
+      this.setState({
+        activarBoton:false
+      });
+    }
   }
 
   borrarUsuario() {
     UsuarioServicio.borrarUsuario(this.state.usuarioActual.id)
+      .then(response => {
+        console.log(response.data);
+        this.refrescarLista();
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  borrarTodosUsuarios() {
+    UsuarioServicio.borrarUsuarios()
       .then(response => {
         console.log(response.data);
         this.refrescarLista();
@@ -104,16 +126,55 @@ export default class UsuariosLista extends Component {
     .catch(e => {
       console.log(e);
     });
+    this.refreshPage();
   }
-//No funciona
-  activarBoton(){
-    if(this.state.usuarioActual.id==1)
-      return true
-    else return false
+
+   refreshPage() {
+    window.location.reload();
+  }
+
+  devolverUsuariosInactivos() {
+    UsuarioServicio.getInactivos()
+      .then(response => {
+        this.setState({
+          usuarios: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  devolverUsuariosActivos() {
+    UsuarioServicio.getActivos()
+      .then(response => {
+        this.setState({
+          usuarios: response.data
+        });
+        console.log(response.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
+
+  muestraInactivos(){
+    this.setState({
+      cambiarCabecera:1
+    });
+    this.devolverUsuariosInactivos();
+  }
+
+  muestraActivos(){
+    this.setState({
+      cambiarCabecera:2
+    });
+    this.devolverUsuariosActivos();
   }
 
   render(){
-    const{buscarNombre,usuarios,usuarioActual,indiceActual}=this.state;
+    const{buscarNombre,usuarios,usuarioActual,indiceActual, activarBoton, cambiarCabecera}=this.state;
     return(
          <div className="list row">
             <div className="col-md-8">
@@ -126,7 +187,11 @@ export default class UsuariosLista extends Component {
                 </div>
             </div>
             <div className="col-md-6">
-                <h4>Lista de Usuarios</h4>
+                {cambiarCabecera===1 ? <h4>Lista de Usuarios Inactivos </h4> : cambiarCabecera==2 ? <h4>Lista de Usuarios Activos </h4>:<h4>Lista de Usuarios </h4> }
+                  <button className="m-3 btn-sm btn btn-outline-dark" type="button" onClick={this.refreshPage}>Todos</button>
+                  <button className="m-3 btn-sm btn btn-outline-warning" type="button" onClick={()=>this.muestraInactivos()}>Inactivos</button>
+                  <button className="m-3 btn-sm btn btn-outline-primary" type="button" onClick={()=>this.muestraActivos()}>Activos</button>
+                  <button className="m-3 btn-sm btn btn-outline-danger" type="button" onClick={()=>this.borrarTodosUsuarios()}>Borrar Todos</button>
                 <ul className="list-group">
                    {usuarios && usuarios.map(
                        (usuario,indice)=>(
@@ -141,10 +206,6 @@ export default class UsuariosLista extends Component {
                            </li>
                     ))} 
                 </ul>
-                <button className="m-3 btn btn-sm btn-danger" disabled={()=>this.activarBoton}
-                onClick={()=>this.borrarUsuario()}>
-                    Borrar Usuario
-                </button>
             </div>
             <div className="col-md-6">
             {usuarioActual ? (
@@ -168,9 +229,17 @@ export default class UsuariosLista extends Component {
                 </label>{" "}
                 {usuarioActual.activo ? "Activo" : "Pendiente de Activar"}
               </div>
-              {usuarioActual.activo ? <button className="btn btn-outline-danger" type="button" onClick={()=>this.activarUsuario(false)}>
+              {usuarioActual.activo ? <button className="btn btn-outline-danger" type="button" 
+                onClick={()=>this.activarUsuario(false)} disabled={activarBoton}>
                 Desactivar</button>: 
-                <button className="btn btn-outline-success" type="button" onClick={()=>this.activarUsuario(true)}>Activar</button>}
+                <button className="btn btn-outline-success" type="button" 
+                onClick={()=>this.activarUsuario(true)} disabled={activarBoton}>
+                Activar</button>}
+
+                <button className="m-3 btn  btn-danger" disabled={activarBoton}
+                onClick={()=>this.borrarUsuario()}>
+                    Borrar Usuario
+                </button>
             </div>
           ) : (
             <div>

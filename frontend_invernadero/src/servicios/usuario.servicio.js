@@ -22,11 +22,20 @@ class UsuarioServicio{
     borrarUsuario(id){
         return http.delete(`/test/usuarios/${id}`);
     }
+    borrarUsuarios(){
+        return http.delete(`/test/usuarios`);
+    }
     findByNombre(nombre){
        return http.get(`/test/usuarios?nom_usuario=${nombre}`);
     }
     updateActivar(id, datos){
         return http.put(`/test/usuarios/${id}`, datos);
+    }
+    getInactivos(){
+        return http.get("/test/usuarios_inactivos");
+    }
+    getActivos(){
+        return http.get("/test/usuarios_activos");
     }
 }
 

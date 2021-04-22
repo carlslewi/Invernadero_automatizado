@@ -39,17 +39,17 @@ exports.update = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Tutorial was updated successfully."
+          message: "Usuario actualizado correctamente."
         });
       } else {
         res.send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+          message: `No se puede actualizar usuario con id=${id}.`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error actualizando usuario con id=" + id
       });
     });
 };
@@ -77,17 +77,59 @@ exports.delete = (req, res) => {
     .then(num => {
       if (num == 1) {
         res.send({
-          message: "Tutorial was deleted successfully!"
+          message: "Usuario borrado correctamente"
         });
       } else {
         res.send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `No se puede borrar usuario con id=${id}`
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id
+        message: "Error al borrar usuario con id=" + id
+      });
+    });
+};
+
+exports.deleteAll = (req, res) => {
+  Usuario.destroy({
+    where: {id:{[Op.not]:'1'}},
+    truncate: false
+  })
+    .then(veces=> {
+      res.send({ message: `${veces} usuarios borrados` });
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Error al borrar todos los usuarios."
+      });
+    });
+};
+
+exports.findInactivos = (req,res) => {
+  Usuario.findAll({ where: {activo:false} })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Ha ocurrido algun error."
+      });
+    });
+};
+
+exports.findActivos = (req,res) => {
+  Usuario.findAll({ where: {activo:true} })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Ha ocurrido algun error."
       });
     });
 };

@@ -16,4 +16,7 @@ module.exports = function(serv){
     serv.put("/api/test/usuarios/:id", controlador.update);
     serv.get("/api/test/usuarios/:id", controlador.findOne);
     serv.delete("/api/test/usuarios/:id", controlador.delete);
+    serv.delete("/api/test/usuarios", controlador.deleteAll);
+    serv.get("/api/test/usuarios_inactivos", controlador.findInactivos);
+    serv.get("/api/test/usuarios_activos", controlador.findActivos);
 };
