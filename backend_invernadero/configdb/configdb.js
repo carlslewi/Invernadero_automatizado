@@ -4,6 +4,11 @@ module.exports = {
     PASSWORD : "lewi",
     DB : "invernadero",
     dialect: "mariadb",
+    dialectOptions: {
+        useUTC: false, 
+        timezone:"+02:00",
+      },
+    timezone: "+02:00",
     pool : {
         max : 10, //numero maximo de conexiones
         min : 0, //numero minimo de conexiones 

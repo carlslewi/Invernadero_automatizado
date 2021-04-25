@@ -49,12 +49,12 @@ await u9.addRoles([r0])
 
 //Lamaremos a sync, esto creara las tablas y modificaciones en la bd
 
-db.sequelize.sync({ force: true }).then(() => {
+/*db.sequelize.sync({ force: true }).then(() => {
     console.log("Drop and re-sync db.");
     run();
-  });
+  });*/
 
-//db.sequelize.sync();
+db.sequelize.sync();
 
 //Definiremos una ruta simple para cuando nos conectemos al servidor nos muestre um mensaje de bienvenida
 

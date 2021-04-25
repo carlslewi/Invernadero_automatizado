@@ -187,7 +187,7 @@ export default class UsuariosLista extends Component {
                 </div>
             </div>
             <div className="col-md-6">
-                {cambiarCabecera===1 ? <h4>Lista de Usuarios Inactivos </h4> : cambiarCabecera==2 ? <h4>Lista de Usuarios Activos </h4>:<h4>Lista de Usuarios </h4> }
+                {cambiarCabecera===1 ? <h4>Lista de Usuarios Inactivos </h4> : cambiarCabecera===2 ? <h4>Lista de Usuarios Activos </h4>:<h4>Lista de Usuarios </h4> }
                   <button className="m-3 btn-sm btn btn-outline-dark" type="button" onClick={this.refreshPage}>Todos</button>
                   <button className="m-3 btn-sm btn btn-outline-warning" type="button" onClick={()=>this.muestraInactivos()}>Inactivos</button>
                   <button className="m-3 btn-sm btn btn-outline-primary" type="button" onClick={()=>this.muestraActivos()}>Activos</button>
