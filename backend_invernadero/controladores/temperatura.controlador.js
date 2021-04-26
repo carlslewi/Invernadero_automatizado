@@ -19,12 +19,12 @@ exports.create = (req, res)=>{
 };
 
 //Devolver todos los valores de temperaturas registrados en la base de datos
-/*
-exports.findAll = (req,res) => {
-    Temperatura.findAll({}).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
-};*/
 
 exports.findAll = (req,res) => {
+    Temperatura.findAll({}).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+};
+
+exports.findFechas = (req,res) => {
   const fechap = req.query.fechap;
   const fechaf = req.query.fechaf;
   var condition = fechap && fechaf ? { createdAt: { [Op.between]: [fechap,fechaf] } } : null;
@@ -44,11 +44,12 @@ exports.findAll = (req,res) => {
 
 exports.findLastTemp = (req,res) => {
   Temperatura.findAll({
-    attributes: [
-      [db.sequelize.fn('MAX', db.sequelize.col('id')), 'idmax'],
-      'valor'
+    limit:1,
+    order: [
+      ['id','DESC']    
     ]
-  }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});;
+  }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+  
 };
 
 exports.deleteAll = (req, res) => {

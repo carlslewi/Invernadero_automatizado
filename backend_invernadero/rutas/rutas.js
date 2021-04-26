@@ -7,7 +7,7 @@ module.exports = serv => {
     //Intro temperatura
     ruta.post("/temperaturas/",temperaturas.create);
     ruta.get("/temperaturas", temperaturas.findAll);
-   // ruta.get("/temperaturas", temperaturas.findDayTemp)
+    ruta.get("/temperaturasFechas", temperaturas.findFechas)
     ruta.get("/temperaturamax", temperaturas.findLastTemp);
     ruta.delete("/temperaturas", temperaturas.deleteAll);
 

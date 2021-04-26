@@ -7,7 +7,7 @@ class Sensores{
         return http.get("/temperaturamax");
     }
      getDayTemps(fechap, fechaf){
-        return http.get(`/temperaturas?fechap=${fechap}&fechaf=${fechaf}`);
+        return http.get(`/temperaturasFechas?fechap=${fechap}&fechaf=${fechaf}`);
      }
 }
 
