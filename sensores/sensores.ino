@@ -17,15 +17,19 @@ void loop() {
     return;
   }
   //Serial.println("Temperatura: ");
-  delay(2000);
+  //delay(2000);
   Serial.print(t);
-  /*Serial.println("Humedad: ");
+  Serial.print(',');
   Serial.print(h);
+  Serial.print(',');
+  Serial.println();
+  /*
+  
   Serial.println();
   Serial.println("Luminosidad: ");
   Serial.print(luz);
   Serial.println(" %");
   Serial.println();*/
-  delay(5000);//Esperamos 5 segundos para volver a leer datos
-  Serial.flush();
+  delay(30000);//Esperamos 30 segundos para volver a enviar datos al broker y servidor
+  //Serial.flush();
 } 

@@ -100,11 +100,11 @@ export default class PagUsuario extends Component{
     }
 
     obtenerTemperaturasFechas() {
-        /*const anno = this.state.fecha.getFullYear()
-        const mes = this.state.fecha.getMonth();
-        const dia = this.state.fecha.getDate();*/
+        const anno = this.state.fechafin.getFullYear()
+        const mes = this.state.fechafin.getMonth();
+        const dia = this.state.fechafin.getDate();
         const fechap = this.state.fechainicio.toISOString()
-        const fechaf = this.state.fechafin.toISOString()
+        const fechaf = new Date(anno,mes,dia+1).toISOString()
         var vt=[];
         
         
@@ -147,24 +147,8 @@ export default class PagUsuario extends Component{
     render(){
         const {temperaturamax, temperaturas} = this.state;
         //Para la grafica
+       
         const data = {
-            labels: this.state.vfechas,
-            datasets: [{
-                label: 'Temperaturas',
-                data: this.state.vtemps,
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
- 
-                ],
-                borderWidth: 1
-            }]
-        }
-
-        const data1 = {
             labels: this.state.vfechas,
             datasets: [{
                 label: 'Temperaturas',
@@ -211,7 +195,7 @@ export default class PagUsuario extends Component{
             </div>
                 <div className="col-md-8 align-items-center">
                     <div class="row justify-content-center">
-                                <Line data={data1}/>
+                                <Line data={data}/>
                     </div>
                </div>
             </div>
