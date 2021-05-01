@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UsuarioServicio from "../servicios/usuario.servicio";
+import swal from "sweetalert"
 
 export default class UsuariosLista extends Component {
   constructor(props) {
@@ -175,6 +176,19 @@ export default class UsuariosLista extends Component {
 
   render(){
     const{buscarNombre,usuarios,usuarioActual,indiceActual, activarBoton, cambiarCabecera}=this.state;
+    const alertaBorrar=()=>{
+      swal({
+        title:"Eliminar",
+        text:"¿Estás seguro que deseas borrar el usuario?",
+        icon:"warning",
+        buttons:["Cancelar", "Aceptar"]
+      }).then(resp=>{
+        if(resp){
+          this.borrarUsuario();
+          swal({text:"Usuario borrado", icon:"success"})
+        }
+      })
+    }
     return(
          <div className="list row">
             <div className="col-md-8">
@@ -191,7 +205,7 @@ export default class UsuariosLista extends Component {
                   <button className="m-3 btn-sm btn btn-outline-dark" type="button" onClick={this.refreshPage}>Todos</button>
                   <button className="m-3 btn-sm btn btn-outline-warning" type="button" onClick={()=>this.muestraInactivos()}>Inactivos</button>
                   <button className="m-3 btn-sm btn btn-outline-primary" type="button" onClick={()=>this.muestraActivos()}>Activos</button>
-                  <button className="m-3 btn-sm btn btn-outline-danger" type="button" onClick={()=>this.borrarTodosUsuarios()}>Borrar Todos</button>
+                  {/*<button className="m-3 btn-sm btn btn-outline-danger" type="button" onClick={()=>this.borrarTodosUsuarios()}>Borrar Todos</button>*/}
                 <ul className="list-group">
                    {usuarios && usuarios.map(
                        (usuario,indice)=>(
@@ -237,7 +251,7 @@ export default class UsuariosLista extends Component {
                 Activar</button>}
 
                 <button className="m-3 btn  btn-danger" disabled={activarBoton}
-                onClick={()=>this.borrarUsuario()}>
+                onClick={alertaBorrar}>
                     Borrar Usuario
                 </button>
             </div>

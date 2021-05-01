@@ -22,6 +22,8 @@ void loop() {
   Serial.print(',');
   Serial.print(h);
   Serial.print(',');
+  Serial.print(luz);
+  Serial.print(',');
   Serial.println();
   /*
   

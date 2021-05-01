@@ -9,31 +9,24 @@ export default class PagUsuario extends Component{
     
     constructor(props){
         super(props);
-        this.obtenerTemperaturas = this.obtenerTemperaturas.bind(this);
+        //this.obtenerTemperaturas = this.obtenerTemperaturas.bind(this);
         this.obtenerUltTemp = this.obtenerUltTemp.bind(this);
+        this.obtenerTempMax = this.obtenerTempMax.bind(this);
+        this.obtenerTempMin = this.obtenerTempMin.bind(this);
+        this.obtenerTemperaturasDia=this.obtenerTemperaturasDia.bind(this);
 
            this.state={
             //content:"",
             temperaturas:[],
+            ulttemp:[],
             temperaturamax:[],
+            temperaturamin:[],
             fecha:new Date(),
-            fechainicio:new Date(),
-            fechafin:new Date(),
+            //fechainicio:new Date(),
+            //fechafin:new Date(),
             vtemps:[],
             vfechas:[]
         };
-    }
-
-    onChange=(fecha)=>{
-        this.setState({fecha:fecha})
-    }
-
-    onChangeInicio=(fecha)=>{
-        this.setState({fechainicio:fecha})
-    }
-
-    onChangeFin=(fecha)=>{
-        this.setState({fechafin:fecha})
     }
 
     componentDidMount(){
@@ -50,8 +43,22 @@ export default class PagUsuario extends Component{
             }
         );
 
-       //this.obtenerTemperaturasDia();
        this.obtenerUltTemp();
+       this.obtenerTempMax();
+       this.obtenerTempMin();
+       this.obtenerTemperaturasDia(this.state.fecha);
+    }
+
+    onChange=(fecha)=>{
+        this.setState({fecha:fecha})
+        this.obtenerTemperaturasDia(fecha)
+    }
+    onChangeInicio=(fecha)=>{
+        this.setState({fechainicio:fecha})
+    }
+
+    onChangeFin=(fecha)=>{
+        this.setState({fechafin:fecha})
     }
     
     obtenerTemperaturas() {
@@ -69,15 +76,14 @@ export default class PagUsuario extends Component{
         );
     }
 
-    obtenerTemperaturasDia() {
-        const anno = this.state.fecha.getFullYear()
-        const mes = this.state.fecha.getMonth();
-        const dia = this.state.fecha.getDate();
-        const fechap = new Date(anno,mes,dia).toISOString()
-        const fechaf = new Date(anno,mes,dia+1).toISOString()
+    obtenerTemperaturasDia(fecha) {
+        const anno = fecha.getFullYear();
+        const mes = fecha.getMonth();
+        const dia = fecha.getDate();
+        const fechap = new Date(anno,mes,dia).toISOString();
+        const fechaf = new Date(anno,mes,dia+1).toISOString();
         var vt=[];
-        
-        
+    
         Sensores.getDayTemps(fechap, fechaf).then(
             response => {
                 var vtt=[]
@@ -85,7 +91,6 @@ export default class PagUsuario extends Component{
                 vt=response.data
                 vt.map(elemento=>(vtt.push(elemento.valor), vff.push(elemento.createdAt)))
                 this.setState({
-                    temperaturas:response.data,
                     vtemps:vtt,
                     vfechas:vff
                 });
@@ -99,7 +104,7 @@ export default class PagUsuario extends Component{
         );
     }
 
-    obtenerTemperaturasFechas() {
+/*    obtenerTemperaturasFechas() {
         const anno = this.state.fechafin.getFullYear()
         const mes = this.state.fechafin.getMonth();
         const dia = this.state.fechafin.getDate();
@@ -128,9 +133,24 @@ export default class PagUsuario extends Component{
             }
         );
     }
-
+*/
     obtenerUltTemp() {
         Sensores.getUltTemp().then(
+            response => {
+                this.setState({
+                    ulttemp:response.data
+                });
+            }, error => {
+                this.setState({
+                    content: (error.response && error.response.data) ||
+                    error.message || error.message.toString()
+                });
+            }
+        );
+    }
+
+    obtenerTempMax() {
+        Sensores.getTempMax().then(
             response => {
                 this.setState({
                     temperaturamax:response.data
@@ -144,8 +164,23 @@ export default class PagUsuario extends Component{
         );
     }
 
+    obtenerTempMin() {
+        Sensores.getTempMin().then(
+            response => {
+                this.setState({
+                    temperaturamin:response.data
+                });
+            }, error => {
+                this.setState({
+                    content: (error.response && error.response.data) ||
+                    error.message || error.message.toString()
+                });
+            }
+        );
+    }
+   
     render(){
-        const {temperaturamax, temperaturas} = this.state;
+        const {temperaturamax, ulttemp, temperaturamin} = this.state;
         //Para la grafica
        
         const data = {
@@ -164,38 +199,50 @@ export default class PagUsuario extends Component{
                 borderWidth: 1
             }]
         }
-    
+//////////////        {this.obtenerTemperaturasDia()}
         return(
             <div class="list row">
                <div className="col-md-4">
                 <div class="row>">
                     <h4>Temperaturas</h4>
-                    <p>Última temperatura registrada: {temperaturamax &&
-                            temperaturamax.map((temperatura) => (
+                    <p>Última temperatura registrada: {ulttemp&&
+                            ulttemp.map((temperatura) => (
                         temperatura.valor
+                    ))}</p>
+                </div>
+                <div class="row>">
+                    <p>Temperatura Máxima: {temperaturamax &&
+                            temperaturamax.map((temperatura) => (
+                        temperatura.tempMax
+                    ))}</p>
+                </div>
+                <div class="row>">
+                    <p>Temperatura Mínima: {temperaturamin &&
+                            temperaturamin.map((temperatura) => (
+                        temperatura.tempMin
                     ))}</p>
                 </div>
                 <div class="row>">
                     <h6>Graficar Temperaturas Diarias</h6>
                     <div className="col-md-0">
-                    <DatePicker selected={this.state.fecha} onSelect={this.onChange} />
+                    <DatePicker selected={this.state.fecha} onSelect={this.onChange}/>
                     </div>
                     <button className="m-3 btn-sm btn btn-outline-dark" type="button" onClick={()=>this.obtenerTemperaturasDia()}>Buscar</button>
                 </div>
-                <div class="row>">
-                    <h6>Graficar Temperaturas Entre Fechas</h6>
-                    <div className="col-md-0">
-                    Fecha Inicio<DatePicker selected={this.state.fechainicio} onSelect={this.onChangeInicio} />
-                    </div>
+             { /*  <div class="row>">
+                        <h6>Graficar Temperaturas Entre Fechas</h6>
+                        <div className="col-md-0">
+                        Fecha Inicio<DatePicker selected={this.state.fechainicio} onSelect={this.onChangeInicio} />
+                        </div>
                     <div>
                     Fecha Fin<br></br><DatePicker selected={this.state.fechafin} onSelect={this.onChangeFin} />
                     </div>
                     <button className="m-3 btn-sm btn btn-outline-dark" type="button" onClick={()=>this.obtenerTemperaturasFechas()}>Buscar</button>
-                </div>
+                </div>*/}
             </div>
                 <div className="col-md-8 align-items-center">
                     <div class="row justify-content-center">
-                                <Line data={data}/>
+                        <Line data={data} />
                     </div>
                </div>
             </div>

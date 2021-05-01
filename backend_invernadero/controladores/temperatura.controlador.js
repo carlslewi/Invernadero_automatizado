@@ -52,6 +52,20 @@ exports.findLastTemp = (req,res) => {
   
 };
 
+exports.findTempMax = (req,res) => {
+  Temperatura.findAll({  
+    attributes: [[db.sequelize.fn('max', db.sequelize.col('valor')), 'tempMax']]  
+    }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+  
+};
+
+exports.findTempMin = (req,res) => {
+  Temperatura.findAll({  
+    attributes: [[db.sequelize.fn('min', db.sequelize.col('valor')), 'tempMin']]  
+    }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+  
+};
+
 exports.deleteAll = (req, res) => {
     Temperatura.destroy({
       where: {},
@@ -66,4 +80,13 @@ exports.deleteAll = (req, res) => {
             err.message || "Ha ocurrido algún error"
         });
       });
+  };
+
+  exports.findTemps = (req,res) => {
+    Temperatura.findAll({  
+      attributes: [
+        [db.sequelize.fn('date_trunc', 'hour', db.sequelize.col('updated_at')), 'hour']],
+        group:'hour'
+      }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+    
   };

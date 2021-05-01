@@ -8,7 +8,10 @@ module.exports = serv => {
     ruta.post("/temperaturas/",temperaturas.create);
     ruta.get("/temperaturas", temperaturas.findAll);
     ruta.get("/temperaturasFechas", temperaturas.findFechas)
-    ruta.get("/temperaturamax", temperaturas.findLastTemp);
+    ruta.get("/temperaturault", temperaturas.findLastTemp);
+    ruta.get("/temperaturamax", temperaturas.findTempMax);
+    ruta.get("/temperaturamin", temperaturas.findTempMin);
+    ruta.get("/temperaturashoras", temperaturas.findTemps);
     ruta.delete("/temperaturas", temperaturas.deleteAll);
 
     //Intro humedad

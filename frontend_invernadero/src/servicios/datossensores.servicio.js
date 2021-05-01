@@ -3,12 +3,18 @@ class Sensores{
     getAllTemps(){
         return http.get("/temperaturas");
     }
-    getUltTemp(){
+    getTempMax(){
         return http.get("/temperaturamax");
     }
-     getDayTemps(fechap, fechaf){
+    getTempMin(){
+        return http.get("/temperaturamin");
+    }
+    getDayTemps(fechap, fechaf){
         return http.get(`/temperaturasFechas?fechap=${fechap}&fechaf=${fechaf}`);
-     }
+    }
+    getUltTemp(){
+        return http.get("/temperaturault");
+    }
 }
 
 export default new Sensores();

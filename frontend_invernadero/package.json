@@ -23,6 +23,7 @@
     "react-scripts": "4.0.3",
     "react-validation": "^3.0.7",
     "simple-react-calendar": "^2.2.8",
+    "sweetalert": "^2.1.2",
     "validator": "^13.5.2",
     "web-vitals": "^1.1.0"
   },
