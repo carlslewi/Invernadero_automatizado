@@ -89,7 +89,7 @@ export default class PagUsuario extends Component{
                 var vtt=[]
                 var vff=[]
                 vt=response.data
-                vt.map(elemento=>(vtt.push(elemento.valor), vff.push(elemento.createdAt)))
+                vt.map(elemento=>(vtt.push(elemento.average), vff.push(elemento.createdAt)))
                 this.setState({
                     vtemps:vtt,
                     vfechas:vff
@@ -202,7 +202,7 @@ export default class PagUsuario extends Component{
 //////////////        {this.obtenerTemperaturasDia()}
         return(
             <div class="list row">
-               <div className="col-md-4">
+               <div className="col-md-5">
                 <div class="row>">
                     <h4>Temperaturas</h4>
                     <p>Última temperatura registrada: {ulttemp&&
@@ -211,23 +211,23 @@ export default class PagUsuario extends Component{
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <p>Temperatura Máxima: {temperaturamax &&
-                            temperaturamax.map((temperatura) => (
-                        temperatura.tempMax
-                    ))}</p>
-                </div>
-                <div class="row>">
-                    <p>Temperatura Mínima: {temperaturamin &&
-                            temperaturamin.map((temperatura) => (
-                        temperatura.tempMin
-                    ))}</p>
-                </div>
-                <div class="row>">
                     <h6>Graficar Temperaturas Diarias</h6>
                     <div className="col-md-0">
                     <DatePicker selected={this.state.fecha} onSelect={this.onChange}/>
                     </div>
-                    <button className="m-3 btn-sm btn btn-outline-dark" type="button" onClick={()=>this.obtenerTemperaturasDia()}>Buscar</button>
+                </div>
+                <br></br>
+                <div class="row>">
+                    <p>Temperatura Máxima Registrada:<br></br> {temperaturamax &&
+                            temperaturamax.map((temperatura) => (
+                        ["Valor:"+temperatura.valor+'\n'+ "Fecha:"+ temperatura.createdAt]
+                    ))}</p>
+                </div>
+                <div class="row>">
+                   <p> Temperatura Mínima Registrada:<br></br> {temperaturamin &&
+                            temperaturamin.map((temperatura) => (
+                        ["Valor:"+temperatura.valor+'\n'+ "Fecha:"+ temperatura.createdAt]
+                    ))}</p>
                 </div>
              { /*  <div class="row>">
                         <h6>Graficar Temperaturas Entre Fechas</h6>
@@ -240,7 +240,7 @@ export default class PagUsuario extends Component{
                     <button className="m-3 btn-sm btn btn-outline-dark" type="button" onClick={()=>this.obtenerTemperaturasFechas()}>Buscar</button>
                 </div>*/}
             </div>
-                <div className="col-md-8 align-items-center">
+                <div className="col-md-7 align-items-center">
                     <div class="row justify-content-center">
                         <Line data={data} />
                     </div>

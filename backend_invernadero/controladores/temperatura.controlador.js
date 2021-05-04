@@ -28,7 +28,12 @@ exports.findFechas = (req,res) => {
   const fechap = req.query.fechap;
   const fechaf = req.query.fechaf;
   var condition = fechap && fechaf ? { createdAt: { [Op.between]: [fechap,fechaf] } } : null;
-  Temperatura.findAll({ where: condition })
+  Temperatura.findAll({
+    attributes: ['createdAt',[db.sequelize.fn('AVG', db.sequelize.col('valor')), 'average']],
+    where: condition,
+    group: [[db.sequelize.fn('hour', db.sequelize.col('createdAt'))], [db.sequelize.fn('day', db.sequelize.col('createdAt'))]],  
+    order:['createdAt'] 
+  })
     .then(data => {
       res.send(data);
     })
@@ -53,15 +58,19 @@ exports.findLastTemp = (req,res) => {
 };
 
 exports.findTempMax = (req,res) => {
-  Temperatura.findAll({  
-    attributes: [[db.sequelize.fn('max', db.sequelize.col('valor')), 'tempMax']]  
+  Temperatura.findAll({
+    limit:1,  
+    order:[['valor','DESC']],
+    group:'valor'
     }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
   
 };
 
 exports.findTempMin = (req,res) => {
-  Temperatura.findAll({  
-    attributes: [[db.sequelize.fn('min', db.sequelize.col('valor')), 'tempMin']]  
+  Temperatura.findAll({
+    limit:1,  
+    order:[['valor']],
+    group:'valor'
     }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
   
 };
@@ -84,9 +93,9 @@ exports.deleteAll = (req, res) => {
 
   exports.findTemps = (req,res) => {
     Temperatura.findAll({  
-      attributes: [
-        [db.sequelize.fn('date_trunc', 'hour', db.sequelize.col('updated_at')), 'hour']],
-        group:'hour'
-      }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+      attributes: ['createdAt',[db.sequelize.fn('AVG', db.sequelize.col('valor')), 'average']],
+      group: [[db.sequelize.fn('hour', db.sequelize.col('createdAt'))], [db.sequelize.fn('day', db.sequelize.col('createdAt'))]],  
+      order:['createdAt']
+    }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
     
   };
