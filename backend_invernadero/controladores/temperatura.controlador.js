@@ -23,7 +23,7 @@ exports.create = (req, res)=>{
 exports.findAll = (req,res) => {
     Temperatura.findAll({}).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
 };
-
+//Devolver media de temperaturas entre horas
 exports.findFechas = (req,res) => {
   const fechap = req.query.fechap;
   const fechaf = req.query.fechaf;
@@ -54,6 +54,30 @@ exports.findLastTemp = (req,res) => {
       ['id','DESC']    
     ]
   }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+  
+};
+
+exports.findTempDiaMax = (req,res) => {
+  const fechap = req.query.fechap;
+  const fechaf = req.query.fechaf;
+  var condition = fechap && fechaf ? { createdAt: { [Op.between]: [fechap,fechaf] } } : null;
+  Temperatura.findAll({
+    limit:1,
+    order: [['valor','DESC']],
+    where:condition
+    }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
+  
+};
+
+exports.findTempDiaMin = (req,res) => {
+  const fechap = req.query.fechap;
+  const fechaf = req.query.fechaf;
+  var condition = fechap && fechaf ? { createdAt: { [Op.between]: [fechap,fechaf] } } : null;
+  Temperatura.findAll({
+    limit:1,
+    order: [['valor']],
+    where:condition
+    }).then(datos => {res.send(datos);}).catch(err => {res.status(500).send({mensaje:err.mensaje || "Error al mostrar datos"});});
   
 };
 

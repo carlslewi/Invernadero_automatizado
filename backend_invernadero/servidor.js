@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const serv = express();
 const db = require("./modelos");
-const U_controlador = require("./controladores/usuario.controlador");
 
 //Aqui definiremos las opciones de cors
 

@@ -3,9 +3,6 @@ module.exports = (sequelize,Sequelize) => {
         valor : {
             type: Sequelize.FLOAT
         }
-        /*fecha : {
-            type: Sequelize.DATE
-        }*/
     });
 return Humedad;
 };

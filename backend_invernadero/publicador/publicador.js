@@ -29,6 +29,7 @@ pub.on('connect', () => {
         var sensores=data.split(",");
           var temp=sensores[0];
           var hum=sensores[1];
+          var lum=sensores[2];
         //console.log(parseFloat(data))
         //Publicamos y guardamos cada cierto tiempo
         pub.publish('temperatura', temp);
@@ -36,9 +37,9 @@ pub.on('connect', () => {
                       
         pub.publish('humedad', hum);
         http.instance.post("/humedades/",{valor:parseFloat(hum).toFixed(1)});                    
-        /*pub.publish('luminosidad', th.sth.humidity.toFixed(1));
-          http.instance.post("/luminosidades/",{valor:th.sth.humidity.toFixed(1)});       
-                        */
+        
+        pub.publish('luminosidad', lum);
+          http.instance.post("/luminosidades/",{valor:parseFloat(lum).toFixed(1)});       
       })
     }else{console.log('Ha ocurrido algo raro')}
     

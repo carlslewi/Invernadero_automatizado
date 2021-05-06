@@ -7,7 +7,9 @@ import Login from "./componentes/login.componente";
 import Registro from "./componentes/registro.componente";
 import Perfil from "./componentes/perfil.componente";
 import PagUsuario from "./componentes/pagina_usuario.componente";
-import PagAdmin from "./componentes/pagina_administrador.componente";
+import PagTemperatura from "./componentes/pagina_temperatura.componente";
+import PagHumedad from "./componentes/pagina_humedad.componente";
+import PagLuminosidad from "./componentes/pagina_luminosidad.componente";
 import UsuariosLista from "./componentes/usuarios-lista.componente"
 
 
@@ -102,8 +104,10 @@ class App extends Component{
               <Route exact path={["/registro"]} component={Registro}/>
               <Route exact path={["/perfil"]} component={Perfil}/>
               <Route exact path={["/usuario"]} component={PagUsuario}/>
-              <Route exact path={["/administrador"]} component={PagAdmin}/>
-              <Route exact path={["/administrador/usuarios"]} component={UsuariosLista} />
+              <Route exact path={["/usuario/temperaturas"]} component={PagTemperatura}/>
+              <Route exact path={["/usuario/humedades"]} component={PagHumedad}/>
+              <Route exact path={["/usuario/luminosidades"]} component={PagLuminosidad}/>
+              <Route exact path={["/administrador"]} component={UsuariosLista}/>
 
             </Switch>
         </div>

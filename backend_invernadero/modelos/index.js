@@ -19,6 +19,7 @@ db.sequelize = sequelize;
 
 db.temperaturas = require("./temperatura.modelo")(sequelize,Sequelize);
 db.humedad = require("./humedad.modelo")(sequelize, Sequelize);
+db.luminosidad = require("./luminosidad.modelo")(sequelize, Sequelize);
 db.usuario = require("./usuario.modelo")(sequelize, Sequelize);
 db.rol = require("./rol.modelo")(sequelize, Sequelize);
 
