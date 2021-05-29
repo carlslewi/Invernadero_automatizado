@@ -43,7 +43,7 @@ class App extends Component{
       <div>
         <nav className = "navbar navbar-expand navbar-dark bg-dark">
           <Link to={"/"} className = "navbar-brand">
-            Riego Autónomo
+            InverGes
           </Link>
           <div className = "navbar-nav mr-auto">
             <li className="nav-item">
@@ -63,7 +63,7 @@ class App extends Component{
             {usuarioActual &&(
               <li className="nav-item">
                 <Link to={"/usuario"} className="nav-link">
-                  Usuario
+                  Sensores
                 </Link>
               </li>
             )}

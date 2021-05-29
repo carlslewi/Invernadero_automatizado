@@ -1,20 +1,18 @@
-import axios from "axios";
 import authHeader from "./autenticacion-header"
 import http from "../conf.http.js"
-const API_URL = "http:localhost:8080/api/test"
 
 
 class UsuarioServicio{
     getContenidoPublico(){
-        return axios.get(API_URL+'all');
+        return http.get("/test/all");
     }
     
     getContenidoUsuario(){
-        return axios.get(API_URL+'usuario', {headers:authHeader()});
+        return http.get("/test/usuario",{headers:authHeader()});
     }
 
     getContenidoAdministrador(){
-        return axios.get(API_URL+'administrador',{headers:authHeader()});
+        return http.get("/test/administrador",{headers:authHeader()});
     }
     getListaUsuarios(){
         return http.get("/test/usuarios");

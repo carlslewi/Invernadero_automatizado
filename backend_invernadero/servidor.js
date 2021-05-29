@@ -6,10 +6,10 @@ const db = require("./modelos");
 //Aqui definiremos las opciones de cors
 
 var opCors = {
-    origin:"http://localhost:8081"
+  origin:"http://localhost:8081"
 };
 
-serv.use(cors(opCors));
+serv.use(cors());
 
 //Annadiremos los metodos json y urlencoded para acceder facilmente al contenido 
 //de las peticiones HTTP que están en formato json

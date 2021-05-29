@@ -1,9 +1,7 @@
-import axios from "axios";
-const API_URL = "http://localhost:8080/api/auth/";
-
+import http from "../conf.http.js"
 class AuthService{
     login(nom_usuario,password){
-        return axios.post(API_URL+"login",{nom_usuario,password}).then(
+            return http.post("/auth/login",{nom_usuario,password}).then(
             response => {
                 if(response.data.accessToken){
                     localStorage.setItem("usuario", JSON.stringify(response.data));
@@ -15,7 +13,7 @@ class AuthService{
     logout(){localStorage.removeItem("usuario");}
 
     registro(nom_usuario, password, email){
-        return axios.post(API_URL+"registro",{nom_usuario, password, email});
+        return http.post("/auth/registro",{nom_usuario, password, email});
     }
     getUsuarioActual(){
         return JSON.parse(localStorage.getItem('usuario'));

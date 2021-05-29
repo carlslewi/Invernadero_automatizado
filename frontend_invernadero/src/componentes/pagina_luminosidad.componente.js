@@ -72,7 +72,8 @@ export default class PagLuminosidad extends Component{
                 var vtt=[]
                 var vff=[]
                 vt=response.data
-                vt.map(elemento=>(vtt.push(elemento.average), vff.push(elemento.createdAt)))
+                vt.map(elemento=>(vtt.push(elemento.average)))
+                vt.map(elemento=>(vff.push(elemento.createdAt)))
                 this.setState({
                     vlums:vtt,
                     vfechas:vff
@@ -210,13 +211,13 @@ export default class PagLuminosidad extends Component{
                 <div class="row>">
                     <p>Luminosidad Máxima Diaria Registrada:<br></br> {luminosidadmaxdia &&
                             luminosidadmaxdia.map((luminosidad) => (
-                        ["Valor:"+luminosidad.valor+'\n'+ "Fecha:"+ luminosidad.createdAt]
+                        [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
                     <p>Luminosidad Mínima Diaria Registrada:<br></br> {luminosidadmindia &&
                             luminosidadmindia.map((luminosidad) => (
-                        ["Valor:"+luminosidad.valor+'\n'+ "Fecha:"+ luminosidad.createdAt]
+                        [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
@@ -229,13 +230,13 @@ export default class PagLuminosidad extends Component{
                 <div class="row>">
                     <p>Luminosidad Máxima Registrada:<br></br> {luminosidadmax &&
                             luminosidadmax.map((luminosidad) => (
-                        ["Valor:"+luminosidad.valor+'\n'+ "Fecha:"+ luminosidad.createdAt]
+                        [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
                    <p> Luminosidad Mínima Registrada:<br></br> {luminosidadmin &&
                             luminosidadmin.map((luminosidad) => (
-                        ["Valor:"+luminosidad.valor+'\n'+ "Fecha:"+ luminosidad.createdAt]
+                        [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
                 </div>
             </div>

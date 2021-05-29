@@ -74,7 +74,8 @@ export default class PagHumedad extends Component{
                 var vtt=[]
                 var vff=[]
                 vt=response.data
-                vt.map(elemento=>(vtt.push(elemento.average), vff.push(elemento.createdAt)))
+                vt.map(elemento=>(vtt.push(elemento.average)))
+                vt.map(elemento=>(vff.push(elemento.createdAt)))
                 this.setState({
                     vhums:vtt,
                     vfechas:vff
@@ -212,13 +213,13 @@ export default class PagHumedad extends Component{
                 <div class="row>">
                     <p>Humedad Máxima Diaria Registrada:<br></br> {humedadmaxdia &&
                             humedadmaxdia.map((humedad) => (
-                        ["Valor:"+humedad.valor+'\n'+ "Fecha:"+ humedad.createdAt]
+                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
                     <p>Humedad Mínima Diaria Registrada:<br></br> {humedadmindia &&
                             humedadmindia.map((humedad) => (
-                        ["Valor:"+humedad.valor+'\n'+ "Fecha:"+ humedad.createdAt]
+                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
@@ -231,13 +232,13 @@ export default class PagHumedad extends Component{
                 <div class="row>">
                     <p>Humedad Máxima Registrada:<br></br> {humedadmax &&
                             humedadmax.map((humedad) => (
-                        ["Valor:"+humedad.valor+'\n'+ "Fecha:"+ humedad.createdAt]
+                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
                    <p> Humedad Mínima Registrada:<br></br> {humedadmin &&
                             humedadmin.map((humedad) => (
-                        ["Valor:"+humedad.valor+'\n'+ "Fecha:"+ humedad.createdAt]
+                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>
                 </div>
             </div>

@@ -97,7 +97,8 @@ export default class PagTemperatura extends Component{
                 var vtt=[]
                 var vff=[]
                 vt=response.data
-                vt.map(elemento=>(vtt.push(elemento.average), vff.push(elemento.createdAt)))
+                vt.map(elemento=>(vtt.push(elemento.average)))
+                vt.map(elemento=>(vff.push(elemento.createdAt)))
                 this.setState({
                     vtemps:vtt,
                     vfechas:vff
@@ -265,13 +266,13 @@ export default class PagTemperatura extends Component{
                 <div class="row>">
                     <p>Temperatura Máxima Diaria Registrada:<br></br> {temperaturamaxdia &&
                             temperaturamaxdia.map((temperatura) => (
-                        ["Valor:"+temperatura.valor+'\n'+ "Fecha:"+ temperatura.createdAt]
+                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
                     <p>Temperatura Mínima Diaria Registrada:<br></br> {temperaturamindia &&
                             temperaturamindia.map((temperatura) => (
-                        ["Valor:"+temperatura.valor+'\n'+ "Fecha:"+ temperatura.createdAt]
+                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
@@ -284,13 +285,13 @@ export default class PagTemperatura extends Component{
                 <div class="row>">
                     <p>Temperatura Máxima Registrada:<br></br> {temperaturamax &&
                             temperaturamax.map((temperatura) => (
-                        ["Valor:"+temperatura.valor+'\n'+ "Fecha:"+ temperatura.createdAt]
+                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
                    <p> Temperatura Mínima Registrada:<br></br> {temperaturamin &&
                             temperaturamin.map((temperatura) => (
-                        ["Valor:"+temperatura.valor+'\n'+ "Fecha:"+ temperatura.createdAt]
+                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>
                 </div>
              { /*  <div class="row>">
