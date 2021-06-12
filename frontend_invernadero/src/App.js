@@ -46,8 +46,8 @@ class App extends Component{
             InverGes
           </Link>
           <div className = "navbar-nav mr-auto">
-            <li className="nav-item">
-            <Link to={"/inicio"} className="nav-link">
+            <li className="nav-item ">
+            <Link to={"/inicio"} className="nav-link ">
               Inicio
             </Link>
             </li>

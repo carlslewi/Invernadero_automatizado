@@ -31,17 +31,18 @@ export default class PagUsuario extends Component{
                         <div className="navbar-nav mr-auto">
                             <li className="nav-item"> 
                                 <Link to={"usuario/temperaturas"} className="nav-link">
-                                    Temperaturas
+                                   <h4>Temperaturas</h4> 
                                 </Link>
                             </li>
+                            
                             <li className="nav-item"> 
                                 <Link to={"usuario/humedades"} className="nav-link">
-                                    Humedades
+                                    <h4>Humedades</h4>
                                 </Link>
                             </li>
                             <li className="nav-item"> 
                                 <Link to={"usuario/luminosidades"} className="nav-link">
-                                    Luminosidades
+                                    <h4>Luminosidades</h4>
                                 </Link>
                             </li>
                         </div>

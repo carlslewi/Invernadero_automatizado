@@ -204,39 +204,39 @@ export default class PagHumedad extends Component{
             <div class="list row">
                <div className="col-md-5">
                 <div class="row>">
-                    <h4>Humedades</h4>
-                    <p>Última humedad registrada: {ulthum&&
+                    <h4><strong>Humedades</strong></h4>
+                    <p><strong>Última humedad registrada:</strong> {ulthum&&
                             ulthum.map((humedad) => (
                         humedad.valor
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <p>Humedad Máxima Diaria Registrada:<br></br> {humedadmaxdia &&
+                    <p><strong>Humedad Máxima Diaria Registrada:</strong><br></br> {humedadmaxdia &&
                             humedadmaxdia.map((humedad) => (
                         [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <p>Humedad Mínima Diaria Registrada:<br></br> {humedadmindia &&
+                    <p><strong>Humedad Mínima Diaria Registrada:</strong><br></br> {humedadmindia &&
                             humedadmindia.map((humedad) => (
                         [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <h6>Graficar Humedades Diarias</h6>
+                    <h6><strong>Graficar Humedades Diarias</strong></h6>
                     <div className="col-md-0">
                     <DatePicker selected={this.state.fecha} onSelect={this.onChange}/>
                     </div>
                 </div>
                 <br></br>
                 <div class="row>">
-                    <p>Humedad Máxima Registrada:<br></br> {humedadmax &&
+                    <p><strong>Humedad Máxima Registrada:</strong><br></br> {humedadmax &&
                             humedadmax.map((humedad) => (
                         [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                   <p> Humedad Mínima Registrada:<br></br> {humedadmin &&
+                   <p><strong>Humedad Mínima Registrada:</strong><br></br> {humedadmin &&
                             humedadmin.map((humedad) => (
                         [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
                     ))}</p>

@@ -15,13 +15,8 @@ export default class Perfil extends Component{
         return(
             <div className="container">
                 <header className="jumbotron">
-                    <h3><strong>{usuarioActual.nom_usuario}</strong>Perfil</h3>
+                    <h3>Perfil <strong>{usuarioActual.nom_usuario}</strong></h3>
                 </header>
-                <p>
-                    <strong>Token:</strong>{" "}
-                    {usuarioActual.accessToken.substring(0,20)}...{" "}
-                    {usuarioActual.accessToken.substr(usuarioActual.accessToken.length-20)}
-                </p>
                 <p>
                     <strong>Id:</strong>{" "}
                     {usuarioActual.id}

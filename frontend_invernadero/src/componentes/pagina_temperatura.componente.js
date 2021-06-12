@@ -257,39 +257,40 @@ export default class PagTemperatura extends Component{
             <div class="list row">
                <div className="col-md-5">
                 <div class="row>">
-                    <h4>Temperaturas</h4>
-                    <p>Última temperatura registrada: {ulttemp&&
+                    <h4><strong>Temperaturas</strong></h4>
+                    <p><strong>Última temperatura registrada:</strong> {ulttemp&&
                             ulttemp.map((temperatura) => (
                         temperatura.valor
                     ))}</p>
                 </div>
+                
                 <div class="row>">
-                    <p>Temperatura Máxima Diaria Registrada:<br></br> {temperaturamaxdia &&
+                    <p><strong>Temperatura Máxima Diaria Registrada:</strong><br></br> {temperaturamaxdia &&
                             temperaturamaxdia.map((temperatura) => (
                         [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <p>Temperatura Mínima Diaria Registrada:<br></br> {temperaturamindia &&
+                    <p><strong>Temperatura Mínima Diaria Registrada:</strong><br></br> {temperaturamindia &&
                             temperaturamindia.map((temperatura) => (
                         [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <h6>Graficar Temperaturas Diarias</h6>
+                    <h6><strong>Graficar Temperaturas Diarias</strong></h6>
                     <div className="col-md-0">
                     <DatePicker selected={this.state.fecha} onSelect={this.onChange}/>
                     </div>
                 </div>
                 <br></br>
                 <div class="row>">
-                    <p>Temperatura Máxima Registrada:<br></br> {temperaturamax &&
+                    <p><strong>Temperatura Máxima Registrada:</strong><br></br> {temperaturamax &&
                             temperaturamax.map((temperatura) => (
                         [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                   <p> Temperatura Mínima Registrada:<br></br> {temperaturamin &&
+                   <p><strong> Temperatura Mínima Registrada:</strong><br></br> {temperaturamin &&
                             temperaturamin.map((temperatura) => (
                         [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
                     ))}</p>

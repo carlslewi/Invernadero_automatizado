@@ -202,39 +202,39 @@ export default class PagLuminosidad extends Component{
             <div class="list row">
                <div className="col-md-5">
                 <div class="row>">
-                    <h4>Luminosidad</h4>
-                    <p>Última luminosidad registrada: {ultlum&&
+                    <h4><strong>Luminosidad</strong></h4>
+                    <p><strong>Última luminosidad registrada:</strong> {ultlum&&
                             ultlum.map((luminosidad) => (
                         luminosidad.valor
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <p>Luminosidad Máxima Diaria Registrada:<br></br> {luminosidadmaxdia &&
+                    <p><strong>Luminosidad Máxima Diaria Registrada:</strong><br></br> {luminosidadmaxdia &&
                             luminosidadmaxdia.map((luminosidad) => (
                         [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <p>Luminosidad Mínima Diaria Registrada:<br></br> {luminosidadmindia &&
+                    <p><strong>Luminosidad Mínima Diaria Registrada:</strong><br></br> {luminosidadmindia &&
                             luminosidadmindia.map((luminosidad) => (
                         [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <h6>Graficar Luminosidades Diarias</h6>
+                    <h6><strong>Graficar Luminosidades Diarias</strong></h6>
                     <div className="col-md-0">
                     <DatePicker selected={this.state.fecha} onSelect={this.onChange}/>
                     </div>
                 </div>
                 <br></br>
                 <div class="row>">
-                    <p>Luminosidad Máxima Registrada:<br></br> {luminosidadmax &&
+                    <p><strong>Luminosidad Máxima Registrada:</strong><br></br> {luminosidadmax &&
                             luminosidadmax.map((luminosidad) => (
                         [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
                 </div>
                 <div class="row>">
-                   <p> Luminosidad Mínima Registrada:<br></br> {luminosidadmin &&
+                   <p><strong>Luminosidad Mínima Registrada:</strong><br></br> {luminosidadmin &&
                             luminosidadmin.map((luminosidad) => (
                         [`Valor:${luminosidad.valor}\nFecha:${luminosidad.createdAt}`]
                     ))}</p>
