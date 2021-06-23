@@ -75,7 +75,7 @@ export default class PagHumedad extends Component{
                 var vff=[]
                 vt=response.data
                 vt.map(elemento=>(vtt.push(elemento.average)))
-                vt.map(elemento=>(vff.push(elemento.createdAt)))
+                vt.map(elemento=>(vff.push(elemento.createdAt.substr(11,3).concat('00'))))
                 this.setState({
                     vhums:vtt,
                     vfechas:vff
@@ -189,11 +189,11 @@ export default class PagHumedad extends Component{
                 label: 'Humedades',
                 data: this.state.vhums,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(0, 177, 228, 0.2)',
                     
                 ],
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    'rgba(0, 177, 228, 1)',
  
                 ],
                 borderWidth: 1
@@ -211,16 +211,22 @@ export default class PagHumedad extends Component{
                     ))}</p>
                 </div>
                 <div class="row>">
-                    <p><strong>Humedad Máxima Diaria Registrada:</strong><br></br> {humedadmaxdia &&
+                <p><strong>Humedad Máxima Diaria Registrada:</strong><br></br> {humedadmaxdia &&
                             humedadmaxdia.map((humedad) => (
-                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
-                    ))}</p>
+                        [`Valor:${humedad.valor}`]
+                    ))}<br></br>{humedadmaxdia &&
+                        humedadmaxdia.map((humedad) => (
+                    [`Fecha:${humedad.createdAt.substr(0,10)} Hora:${humedad.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
                 <div class="row>">
-                    <p><strong>Humedad Mínima Diaria Registrada:</strong><br></br> {humedadmindia &&
+                <p><strong>Humedad Mínima Diaria Registrada:</strong><br></br> {humedadmindia &&
                             humedadmindia.map((humedad) => (
-                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
-                    ))}</p>
+                        [`Valor:${humedad.valor}`]
+                    ))}<br></br>{humedadmindia &&
+                        humedadmindia.map((humedad) => (
+                    [`Fecha:${humedad.createdAt.substr(0,10)} Hora:${humedad.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
                 <div class="row>">
                     <h6><strong>Graficar Humedades Diarias</strong></h6>
@@ -230,16 +236,22 @@ export default class PagHumedad extends Component{
                 </div>
                 <br></br>
                 <div class="row>">
-                    <p><strong>Humedad Máxima Registrada:</strong><br></br> {humedadmax &&
+                <p><strong>Humedad Máxima Registrada:</strong><br></br> {humedadmax &&
                             humedadmax.map((humedad) => (
-                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
-                    ))}</p>
+                        [`Valor:${humedad.valor}`]
+                    ))}<br></br>{humedadmax &&
+                        humedadmax.map((humedad) => (
+                    [`Fecha:${humedad.createdAt.substr(0,10)} Hora:${humedad.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
                 <div class="row>">
-                   <p><strong>Humedad Mínima Registrada:</strong><br></br> {humedadmin &&
+                <p><strong>Humedad Mínima Registrada:</strong><br></br> {humedadmin &&
                             humedadmin.map((humedad) => (
-                        [`Valor:${humedad.valor}\nFecha:${humedad.createdAt}`]
-                    ))}</p>
+                        [`Valor:${humedad.valor}`]
+                    ))}<br></br>{humedadmin &&
+                        humedadmin.map((humedad) => (
+                    [`Fecha:${humedad.createdAt.substr(0,10)} Hora:${humedad.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
             </div>
                 <div className="col-md-7 align-items-center">

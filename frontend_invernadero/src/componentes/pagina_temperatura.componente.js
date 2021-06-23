@@ -98,7 +98,7 @@ export default class PagTemperatura extends Component{
                 var vff=[]
                 vt=response.data
                 vt.map(elemento=>(vtt.push(elemento.average)))
-                vt.map(elemento=>(vff.push(elemento.createdAt)))
+                vt.map(elemento=>(vff.push(elemento.createdAt.substr(11,3).concat('00'))))
                 this.setState({
                     vtemps:vtt,
                     vfechas:vff
@@ -265,16 +265,22 @@ export default class PagTemperatura extends Component{
                 </div>
                 
                 <div class="row>">
-                    <p><strong>Temperatura Máxima Diaria Registrada:</strong><br></br> {temperaturamaxdia &&
+                <p><strong>Temperatura Máxima Diaria Registrada:</strong><br></br> {temperaturamaxdia &&
                             temperaturamaxdia.map((temperatura) => (
-                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
-                    ))}</p>
+                        [`Valor:${temperatura.valor}`]
+                    ))}<br></br>{temperaturamaxdia &&
+                        temperaturamaxdia.map((temperatura) => (
+                    [`Fecha:${temperatura.createdAt.substr(0,10)} Hora:${temperatura.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
                 <div class="row>">
-                    <p><strong>Temperatura Mínima Diaria Registrada:</strong><br></br> {temperaturamindia &&
+                <p><strong>Temperatura Mínima Diaria Registrada:</strong><br></br> {temperaturamindia &&
                             temperaturamindia.map((temperatura) => (
-                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
-                    ))}</p>
+                        [`Valor:${temperatura.valor}`]
+                    ))}<br></br>{temperaturamindia &&
+                        temperaturamindia.map((temperatura) => (
+                    [`Fecha:${temperatura.createdAt.substr(0,10)} Hora:${temperatura.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
                 <div class="row>">
                     <h6><strong>Graficar Temperaturas Diarias</strong></h6>
@@ -284,16 +290,22 @@ export default class PagTemperatura extends Component{
                 </div>
                 <br></br>
                 <div class="row>">
-                    <p><strong>Temperatura Máxima Registrada:</strong><br></br> {temperaturamax &&
+                <p><strong>Temperatura Máxima Registrada:</strong><br></br> {temperaturamax &&
                             temperaturamax.map((temperatura) => (
-                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
-                    ))}</p>
+                        [`Valor:${temperatura.valor}`]
+                    ))}<br></br>{temperaturamin &&
+                        temperaturamax.map((temperatura) => (
+                    [`Fecha:${temperatura.createdAt.substr(0,10)} Hora:${temperatura.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
                 <div class="row>">
-                   <p><strong> Temperatura Mínima Registrada:</strong><br></br> {temperaturamin &&
+                <p><strong>Temperatura Mínima Registrada:</strong><br></br> {temperaturamin &&
                             temperaturamin.map((temperatura) => (
-                        [`Valor:${temperatura.valor}\nFecha:${temperatura.createdAt}`]
-                    ))}</p>
+                        [`Valor:${temperatura.valor}`]
+                    ))}<br></br>{temperaturamin &&
+                        temperaturamin.map((temperatura) => (
+                    [`Fecha:${temperatura.createdAt.substr(0,10)} Hora:${temperatura.createdAt.substr(11,8)}`]
+                ))}</p>
                 </div>
              { /*  <div class="row>">
                         <h6>Graficar Temperaturas Entre Fechas</h6>
