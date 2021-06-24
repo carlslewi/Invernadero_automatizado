@@ -65,8 +65,8 @@ export default class PagHumedad extends Component{
         const anno = fecha.getFullYear();
         const mes = fecha.getMonth();
         const dia = fecha.getDate();
-        const fechap = new Date(anno,mes,dia).toISOString();
-        const fechaf = new Date(anno,mes,dia+1).toISOString();
+        const fechap = new Date(anno,mes,dia);
+        const fechaf = new Date(anno,mes,dia,23,59,59,59);
         var vt=[];
     
         Sensores.getDayHums(fechap, fechaf).then(

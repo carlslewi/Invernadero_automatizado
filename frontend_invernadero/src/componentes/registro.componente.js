@@ -8,7 +8,7 @@ import AuthService from "../servicios/autenticacion.servicio";
 //Variable para controlar si un campo esta vacio o no
 const campo_requerido = valor =>{
     if(!valor){
-        return (<div classname = "alert alert-danger" role = "alert" >
+        return (<div class="alert alert-danger" role="alert">
             Este campo no puede estar vacío
         </div>);
     }
@@ -16,7 +16,7 @@ const campo_requerido = valor =>{
 
 const email = valor =>{
     if(!isEmail(valor)){
-        return (<div classname = "alert alert-danger" role = "alert" >
+        return (<div class="alert alert-danger" role="alert">
             Email no válido
         </div>);
     }
@@ -24,7 +24,7 @@ const email = valor =>{
 
 const controlUsuario = valor =>{
     if(valor.length < 4 || valor.length > 25){
-        return (<div classname = "alert alert-danger" role = "alert" >
+        return (<div class="alert alert-danger" role="alert">
             El nombre de usuario debe contener entre 4 y 25 caracteres
         </div>);
     }
@@ -32,7 +32,7 @@ const controlUsuario = valor =>{
 
 const controlPassword = valor =>{
     if(valor.length < 8 || valor.length > 20){
-        return (<div classname = "alert alert-danger" role = "alert" >
+        return (<div class="alert alert-danger" role="alert">
             La contraseña debe contener entre 8 y 20 caracteres
         </div>);
     }
